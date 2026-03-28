@@ -182,4 +182,10 @@ That makes this repository useful both as:
 
 ## License
 
-Add a license that matches how you want to distribute or reuse this template.
+This repository uses a custom template license.
+
+- You may use and modify it in your own projects.
+- You may use it in commercial products or client work.
+- You may not sell or redistribute this structure itself as a template, starter, or boilerplate product.
+
+See [LICENSE](LICENSE) for the full terms.
