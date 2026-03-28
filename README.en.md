@@ -150,7 +150,7 @@ With a stable document contract, it can bootstrap from a small set of files, the
 
 ## Intended Workflow
 
-[Workflow Chart Image Holder]
+<img width="1118" height="629" alt="austin-docs-architecture-workflow-chart" src="https://github.com/user-attachments/assets/88357f8c-0772-4eac-b5be-e600c197f988" />
 
 ## Current State of This Repo
 
