@@ -4,6 +4,8 @@
 
 Docs-first repository scaffolding for AI-assisted software development.
 
+This repository packages the docs architecture for collaborating with agents that was introduced in the `Build with AI: Practical Vibe Coding for Student Developer` session.
+
 This project treats documentation as operational memory for coding agents and human collaborators. Instead of relying on a long prompt or a fresh explanation every session, the repository keeps project rules, architecture, product context, TODOs, and work history in predictable files that an agent can read before acting.
 
 ## Core Ideas
