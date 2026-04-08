@@ -34,7 +34,7 @@ The goal is to keep everyone aligned even when different agents are used.
 - 폴더 구조와 [아키텍처 패턴 이름] 패턴 규칙을 지키는가
 - API 사용은 [허용된 API 경로/규칙]만 사용하는가
 - UI/스타일링은 [프로젝트의 스타일링 규칙] 방식인가
-- 현재 작업과 관련된 TODO가 있으면 해당 `docs/todo/*.md`를 읽고 사용자에게 먼저 알렸는가
+- 현재 작업과 관련된 TODO가 있으면 해당 `docs/todo/*.md`를 읽고, 내용을 사용자에게 먼저 알린 뒤 이번 요청 범위에 함께 반영할지 확인했는가
 
 ## 코드 변경 규칙 (요약)
 - [예시: generated 직접 import 금지]
@@ -51,6 +51,8 @@ The goal is to keep everyone aligned even when different agents are used.
 - TODO 추가 시 `docs/todo/00-todo-list.md`에 한 줄 요약도 반드시 함께 갱신
 - TODO 완료 시 해당 TODO 파일을 삭제하고, `docs/reports/`에 작업 기록을 남긴 뒤, `docs/todo/00-todo-list.md`에서도 제거
 - TODO와 관련된 요청을 받으면 우선 `docs/todo/00-todo-list.md`를 확인하고, 관련 항목이 있으면 해당 TODO 문서를 읽은 뒤 사용자에게 관련 TODO 존재 여부와 반영 범위를 먼저 알릴 것
+- 관련 TODO가 현재 요청과 이어질 수 있으면, TODO 내용을 짧게 요약한 뒤 이번 작업에 함께 반영할지 사용자에게 먼저 물어보고 답변을 받은 후 진행할 것
+- 사용자가 범위를 분리해 달라고 하면 현재 요청 범위만 처리하고, 관련 TODO는 건드리지 않을 것
 
 ## 참고
 - 이 문서는 에이전트용이므로 간결하게 유지

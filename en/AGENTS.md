@@ -34,7 +34,7 @@ The goal is to keep everyone aligned even when different agents are used.
 - Does it follow the folder structure and [architecture pattern] rules?
 - Are API calls limited to [allowed API paths / rules]?
 - Does the UI/styling follow [project styling rules]?
-- If a related TODO exists, have I read the relevant `docs/todo/*.md` and informed the user first?
+- If a related TODO exists, have I read the relevant `docs/todo/*.md`, informed the user, and confirmed whether it should be included in the current scope before implementing?
 
 ## Code Change Rules (Summary)
 - [Example: Do not import generated code directly]
@@ -51,6 +51,8 @@ The goal is to keep everyone aligned even when different agents are used.
 - When adding a TODO, also add a one-line summary to `docs/todo/00-todo-list.md`
 - When a TODO is completed, delete the TODO file, write a work record in `docs/reports/`, and remove it from `docs/todo/00-todo-list.md`
 - When receiving a TODO-related request, check `docs/todo/00-todo-list.md` first; if a related item exists, read the TODO document and inform the user about its existence and scope before proceeding
+- If a related TODO may affect the current request, briefly summarize it and ask the user whether it should be included in the current scope before proceeding
+- If the user wants the scopes separated, handle only the current request and leave the related TODO untouched
 
 ## Notes
 - Keep this document concise — it is for agents only
