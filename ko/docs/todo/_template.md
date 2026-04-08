@@ -2,14 +2,15 @@
 
 > 제목 규칙: `TODO - {작업명}`
 >
-> 파일명 권장: `작업키워드.md` 또는 `number-작업키워드.md`
+> 파일명 권장: `작업키워드.md` 또는 `NN-작업키워드.md`
 > 예시: `signup-complete-access-control.md`
 
 - 등록 일시: YYYY-MM-DD HH:MM (TZ)
 - 작성자: (사람 이름)
 - 에이전트: (예: Codex / Copilot / Gemini 등, 없으면 `없음`)
-- 상태: TODO / READY / BLOCKED / DONE
 - 진행 시점: (예: 로그인/회원가입 API 연결 시, 관리자 승인 API 확정 시)
+
+> 완료된 TODO는 이 파일을 삭제하고, `docs/reports/`에 작업 기록을 남깁니다.
 
 ## 목표
 - 

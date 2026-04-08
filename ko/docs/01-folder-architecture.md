@@ -1,11 +1,13 @@
-# 1) 폴더 아키텍처 ([스택/아키텍처 패턴 예시, 예: React SPA + FSD])
+# 1) 폴더 아키텍처 (예: React SPA + FSD)
 
-본 문서는 **[프로젝트 이름]** 서비스의 프론트엔드 폴더 아키텍처를 정의합니다.  
+> ⚠️ 이 문서의 내용은 예시입니다. 실제 프로젝트에 맞게 수정하세요.
+
+본 문서는 **TaskFlow** 서비스의 프론트엔드 폴더 아키텍처를 정의합니다.  
 핵심 목표는 다음과 같습니다.
 
-- [핵심 목표 1, 예: 서비스 앱 레이어 분리]
-- [핵심 목표 2, 예: 컴포넌트 구조화 패턴 (FSD 등)]
-- [핵심 목표 3, 예: 상태 관리 책임 분리]
+- 서비스 앱 레이어 분리
+- FSD(Feature-Sliced Design) 기반 컴포넌트 구조화
+- 상태 관리 책임 분리 (서버 상태 vs UI 상태)
 
 ---
 
@@ -17,12 +19,12 @@ root
 │  ├─ workflows
 │  └─ ISSUE_TEMPLATE
 ├─ apps
-│  ├─ [메인 앱 이름]
-│  └─ [서브 앱 이름]                      # (추후 추가)
+│  ├─ web                                # 메인 웹 앱
+│  └─ admin                              # 관리자 웹 앱 (추후 추가)
 │
 ├─ packages                              # (모노레포 사용 시)
-│  ├─ [공용 패키지 1]
-│  └─ [공용 패키지 2]
+│  ├─ ui                                 # 공용 UI 컴포넌트
+│  └─ utils                              # 공용 유틸리티
 │
 ├─ docs                                  # ✅ AI 에이전트 컨텍스트 폴더
 │  ├─ 01-folder-architecture.md
@@ -35,38 +37,38 @@ root
 │     └─ 00-todo-list.md
 │
 ├─ package.json
-└─ [기타 설정 파일들...]
+└─ tsconfig.json
 ```
 
-> `docs/reports`는 완료되었거나 기록이 필요한 작업 내역을 남기는 용도입니다.
+> `docs/reports`는 완료되었거나 기록이 필요한 작업 내역을 남기는 용도입니다.  
 > `docs/todo`는 선행 작업/API 연동/정책 확정 등이 필요해 지금 당장 처리하지 못하는 후속 작업을 남기는 용도입니다.
 
 ---
 
-## B. 내부 구조 ([적용할 아키텍처 패턴, 예: FSD 스타일])
+## B. 내부 구조 (예: FSD 스타일)
 
-내부는 **[아키텍처 패턴 이름]**에 맞춰 아래처럼 구성합니다.
+내부는 **FSD(Feature-Sliced Design)**에 맞춰 아래처럼 구성합니다.
 
 ```txt
-[메인 앱 src 경로]
+apps/web/src
 ├─ app                               # 애플리케이션 진입점 및 전역 설정
 │  ├─ providers                      
 │  ├─ router                         
 │  └─ styles                         
 │
 ├─ pages                             # 라우팅 단위 페이지 컴포넌트
-│  ├─ [페이지 A]
-│  └─ [페이지 B]
+│  ├─ dashboard
+│  └─ settings
 │
 ├─ widgets                           # 재사용 가능한 독립적인 뷰 블록
-│  ├─ [위젯 A]
-│  └─ [위젯 B]
+│  ├─ task-board
+│  └─ sidebar
 │
 ├─ features                          # 비즈니스 로직을 포함한 핵심 기능 단위
-│  └─ [피처 A]
+│  └─ create-task
 │
 ├─ entities                          # 도메인 모델 및 도메인 로직
-│  └─ [엔티티 A]
+│  └─ task
 │
 └─ shared                            # 전역 공통/재사용 모듈 (UI 요소, API 등)
    ├─ api
@@ -74,4 +76,6 @@ root
    └─ lib
 ```
 
-[상세 규칙이나 제약 사항을 여기에 추가하세요]
+- 상위 레이어는 하위 레이어만 import 가능 (예: features → entities ✅, entities → features ❌)
+- shared는 모든 레이어에서 import 가능
+- 같은 레이어 간 직접 import 금지

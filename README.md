@@ -1,194 +1,179 @@
-[한국어](README.md) | [English](README.en.md)
+[한국어](README.ko.md)
 
 # Austin's Docs Architecture for AI
 
-AI 보조 소프트웨어 개발을 위한 docs-first 저장소 템플릿입니다.
+A docs-first repository template for teams that want AI coding agents and humans to work from the same source of truth.
 
-이 저장소는 `Build with AI: Practical Vibe Coding for Student Developer` 세션에서 소개한, Agent와 협업하기 위한 docs 아키텍처 구조를 정리한 레포지토리입니다.
+Instead of rebuilding context in every prompt, this repository keeps project rules, architecture, product scope, TODOs, and work history in a fixed document structure inside the repo. In this model, the docs act as the project's single source of truth: the first place an agent or developer should check before making changes. Agents read those files before acting, then implement changes and leave durable follow-up context.
 
-이 프로젝트는 문서를 단순 참고 자료가 아니라, 코딩 에이전트와 사람 협업자를 위한 운영 메모리로 취급합니다. 매 세션마다 긴 프롬프트를 다시 만들거나 프로젝트 배경을 반복 설명하는 대신, 저장소 안에 규칙, 아키텍처, 제품 맥락, TODO, 작업 이력을 예측 가능한 파일 구조로 유지해 에이전트가 작업 전에 읽고 행동할 수 있도록 설계했습니다.
+## What It Solves
 
-## 핵심 아이디어
+- project context disappearing into chat history
+- repeated onboarding for every new agent session
+- architecture, specs, and product scope drifting away from the codebase
+- scattered TODOs and weak handoff between contributors
 
-### 1. 문서를 메모리로 사용
-프로젝트 맥락은 채팅 히스토리가 아니라 저장소 안에 남아 있어야 합니다.
+## Core Pieces
 
-- `AGENTS.md`: 모든 에이전트를 위한 작업 합의서
-- `docs/01-folder-architecture.md`: 저장소와 소스 구조 정의
-- `docs/02-specs.md`: 기술 스택, 런타임 규칙, 구현 제약 정의
-- `docs/03-product-plan.md`: 제품 범위, 로드맵, 도메인 의도 정의
-- `docs/reports/`: 인수인계와 추적을 위한 작업 기록 저장
-- `docs/todos/`: 보류되었거나 막힌 후속 작업 저장
+- `AGENTS.md`
+  - shared working agreement for any agent
+  - defines required reading, checklists, and change rules
+- `docs/01-folder-architecture.md`
+  - defines repository structure and folder responsibilities
+- `docs/02-specs.md`
+  - defines stack choices, implementation rules, and constraints
+- `docs/03-product-plan.md`
+  - defines product scope, users, and core features
+- `docs/reports/`
+  - stores completed work notes and major change records
+- `docs/todo/`
+  - stores blocked or deferred follow-up work
 
-### 2. 작업 전 점검
-코드를 변경하기 전에 에이전트는 최소한의 필수 문서를 읽고, 지금 들어온 작업이 프로젝트 구조, 범위, 규칙에 맞는지 확인해야 합니다.
+## Repository Structure
 
-이 저장소는 그 동작을 `AGENTS.md`에 규칙으로 담고 있습니다.
+```text
+.
+├─ README.md          # English
+├─ README.ko.md       # 한국어
+├─ LICENSE
+├─ en                 # ← English template bundle
+│  ├─ AGENTS.md
+│  └─ docs
+│     ├─ 01-folder-architecture.md
+│     ├─ 02-specs.md
+│     ├─ 03-product-plan.md
+│     ├─ reports
+│     │  └─ _template.md
+│     └─ todo
+│        ├─ 00-todo-list.md
+│        └─ _template.md
+└─ ko                 # ← 한국어 템플릿 번들
+   ├─ AGENTS.md
+   └─ docs
+      ├─ 01-folder-architecture.md
+      ├─ 02-specs.md
+      ├─ 03-product-plan.md
+      ├─ reports
+      │  └─ _template.md
+      └─ todo
+         ├─ 00-todo-list.md
+         └─ _template.md
+```
 
-- 먼저 핵심 문서를 읽는다
-- 중앙 TODO 목록을 확인한다
-- 요청이 프로젝트 범위에 맞는지 점검한다
-- 문서와 코드가 어긋나면 문서를 먼저 갱신한다
-- 후속 맥락은 `reports` 또는 `todos`에 남긴다
+Each language folder (`en/`, `ko/`) contains a complete template bundle: `AGENTS.md` + `docs/`.
 
-### 3. 작업 합의서
-이 저장소는 서로 다른 에이전트와 개발자 사이에 안정적인 계약을 제공합니다.
+## How It Works
 
-그 결과:
+1. Fill in `AGENTS.md` and `docs/01`, `docs/02`, `docs/03` with your team rules and project context.
+2. Have agents read those files and `docs/todo/00-todo-list.md` before starting work.
+3. If implementation and docs diverge, update the docs first.
+4. Record important work in `docs/reports/` and deferred work in `docs/todo/`.
 
-- 프롬프트를 다시 조립하는 비용이 줄고
-- 근거 없는 추론이 줄어들며
-- 세션 간 인수인계가 쉬워지고
-- 아키텍처와 제품 의사결정의 경계가 선명해집니다
+## Recommended Use Cases
 
-## 저장소 구조
+- teams starting a new project and wanting clear AI collaboration rules from day one
+- repositories where multiple agents and developers work interchangeably
+- projects that want architecture, specs, and work memory versioned alongside code
+- individuals experimenting with docs-driven AI development workflows
 
-현재 저장소는 문서 계약 자체에 집중한, 작고 명확한 구조를 의도하고 있습니다.
+## Getting Started
+
+> **The easiest way:** Just tell your AI agent:  
+> *"Apply https://github.com/EunHyeokJung/austin-docs-architecture to this workspace."*  
+> The AI will handle everything below automatically.
+
+### AI Setup Instructions (for agents)
+
+If you are an AI agent asked to apply this template to a project, follow these steps **in order**:
+
+**Step 1 — Choose language**
+- Ask the user which language they prefer: **English (`en/`)** or **Korean (`ko/`)**.
+- If the user doesn't specify, infer from the project's existing files or conversation language.
+
+**Step 2 — Copy the template bundle to the project root**
+- Copy `AGENTS.md` and `docs/` from the chosen language folder to the project root:
+
+```bash
+# English
+cp en/AGENTS.md . && cp -r en/docs . && rm -rf en ko
+
+# Korean
+cp ko/AGENTS.md . && cp -r ko/docs . && rm -rf en ko
+```
+
+**Step 3 — Understand the project**
+- Read the project's existing codebase: package.json, folder structure, source files, configs, etc.
+- If the project is empty or has no code yet, ask the user the following:
+  1. What is the core purpose, key features, and target users of the service?
+  2. What tech stack will be used? (framework, language, state management, styling, etc.)
+  3. Any preferred folder structure, architecture pattern, or coding conventions?
+
+**Step 4 — Fill in the documents**
+- Replace all example/placeholder content in these files with the actual project information:
+  - `AGENTS.md` — update checklists, code rules, and references to match the project
+  - `docs/01-folder-architecture.md` — define the real folder structure and responsibilities
+  - `docs/02-specs.md` — define the actual tech stack, libraries, and implementation rules
+  - `docs/03-product-plan.md` — define the real product scope, users, and features
+- Remove the `⚠️ example` warnings from each document.
+
+**Step 5 — Clean up**
+- Delete the initialization comment block at the top of `AGENTS.md` (the `<!-- ... -->` block).
+- Optionally remove `README.md` and `README.ko.md` if they are from this template repo (the project should have its own README).
+
+**After setup, the project should look like:**
 
 ```text
 .
 ├─ AGENTS.md
-└─ docs
-   ├─ 01-folder-architecture.md
-   ├─ 02-specs.md
-   ├─ 03-product-plan.md
-   ├─ reports
-   │  └─ _template.md
-   └─ todos
-      ├─ 00-todo-list.md
-      └─ _template.md
+├─ docs
+│  ├─ 01-folder-architecture.md
+│  ├─ 02-specs.md
+│  ├─ 03-product-plan.md
+│  ├─ reports
+│  │  └─ _template.md
+│  └─ todo
+│     ├─ 00-todo-list.md
+│     └─ _template.md
+└─ (project files...)
 ```
 
-## 파일별 역할
+### Manual Setup
 
-### `AGENTS.md`
-모든 코딩 에이전트의 진입점입니다.
+If you prefer to set it up yourself:
 
-여기에는 다음이 정의됩니다.
+1. Clone or copy this repository into your project.
+2. Pick your language and copy the bundle to the project root:
 
-- 작업 전에 반드시 읽어야 할 문서
-- 작업 시작 체크리스트
-- 핵심 코딩 규칙 요약
-- 문서를 언제 갱신해야 하는지
-- 작업 기록과 TODO를 어떻게 남길지
+```bash
+# English
+cp en/AGENTS.md . && cp -r en/docs . && rm -rf en ko
 
-### `docs/01-folder-architecture.md`
-구조에 대한 단일 진실 공급원입니다.
+# Korean
+cp ko/AGENTS.md . && cp -r ko/docs . && rm -rf en ko
+```
 
-다음 내용을 문서화할 때 사용합니다.
+3. Replace the example content in `AGENTS.md`, `docs/01`, `docs/02`, `docs/03` with your project details.
+4. Delete the initialization comment block at the top of `AGENTS.md`.
+5. Keep work records in `docs/reports/` and deferred tasks in `docs/todo/`.
 
-- 저장소 최상위 레이아웃
-- 앱/패키지 경계
-- 아키텍처 패턴 선택
-- 폴더별 책임
+## Intended Workflow
 
-### `docs/02-specs.md`
-구현 계약서입니다.
+<img width="1118" height="629" alt="austin-docs-architecture-workflow-chart" src="https://github.com/user-attachments/assets/88357f8c-0772-4eac-b5be-e600c197f988" />
 
-다음 내용을 문서화할 때 사용합니다.
+## Operating Principles
 
-- 프레임워크와 런타임 선택
-- 데이터 페칭 규칙
-- 상태 관리 규칙
-- API 사용 규칙
-- 스타일링 제약
+- docs are execution context, not passive reference material
+- docs should remain the project's single source of truth
+- when docs and code disagree, align the docs before implementation
+- TODOs should have a single discoverable index
+- work history should help the next person and the next session
 
-### `docs/03-product-plan.md`
-제품 범위를 정의하는 문서입니다.
+## License
 
-다음 내용을 문서화할 때 사용합니다.
+This repository uses a custom template license.
 
-- 서비스 목적
-- 타겟 사용자
-- MVP 범위
-- 라우트/페이지 계획
-- 핵심 기능 요구사항
+- You may use and modify it in your own projects.
+- You may use it in commercial products or client work.
+- You may not sell or redistribute this structure itself as a template, starter, or boilerplate product.
 
-### `docs/reports/`
-인수인계를 위한 작업 메모리입니다.
-
-작업이 완료되었거나, 중요하거나, 추후 참고를 위해 남겨야 할 때 사용합니다.
-
-대표적인 사용 예시는 다음과 같습니다.
-
-- 기능 구현 요약
-- 리팩터링 이력
-- 다음 에이전트를 위한 리스크 메모
-- 중요한 의사결정 기록
-
-### `docs/todos/`
-보류된 작업 큐입니다.
-
-다음과 같은 이유로 지금 바로 처리할 수 없는 작업을 기록할 때 사용합니다.
-
-- API 계약 미정
-- 정책 결정 미완료
-- 다른 작업 선행 필요
-- 일정상 보류 필요
-
-`docs/todos/00-todo-list.md`는 에이전트가 가장 먼저 확인해야 하는 인덱스 역할을 합니다.
-
-## 왜 도움이 되는가
-
-### 좋은 기본 프롬프트
-저장소 자체가 기본 프롬프트가 됩니다.
-
-에이전트는 불완전한 코드나 짧은 지시문만 보고 추론하는 대신, 저장된 제약, 제품 맥락, 아키텍처 규칙을 기준으로 작업할 수 있습니다.
-
-### 작업 라우팅
-이 워크플로는 에이전트가 동료 개발자처럼 사고하게 만듭니다.
-
-1. 문맥을 읽는다
-2. 필요하면 문서를 먼저 맞춘다
-3. 구현한다
-4. 다음 인수인계를 위한 메모를 남긴다
-
-이렇게 하면 기획, 설계, 구현이 하나의 연속된 루프로 이어집니다.
-
-### 자동 문맥 전달
-에이전트가 처음부터 전체 코드베이스를 다 읽을 필요는 없습니다.
-
-안정적인 문서 계약이 있으면, 적은 수의 핵심 파일만으로 빠르게 부팅한 뒤 현재 작업과 관련된 코드나 TODO로만 확장할 수 있습니다. 그 결과 컨텍스트 비용이 줄고 새 세션에서도 연속성이 좋아집니다.
-
-## 의도한 워크플로
-
-<img width="1118" height="629" alt="austin-docs-architecture-workflow-chart" src="https://github.com/user-attachments/assets/934937b7-ce30-42c8-b47a-5d21fd4ebb06" />
-
-
-## 현재 저장소 상태
-
-이 저장소는 현재 문서 아키텍처 자체를 위한 스타터 템플릿 상태입니다.
-
-- 핵심 문서들은 아직 플레이스홀더 섹션을 포함하고 있습니다.
-- `AGENTS.md` 역시 템플릿 플레이스홀더가 남아 있습니다.
-- 저장소는 이미 파일 계약과 report/TODO 템플릿 구조를 보여주고 있습니다.
-- 일부 지침은 `docs/todo`를 참조하지만, 실제 디렉터리는 `docs/todos`여서 경로 명칭이 불일치합니다.
-
-그래서 이 저장소는 다음 두 목적에 모두 사용할 수 있습니다.
-
-- 새 프로젝트를 위한 재사용 가능한 스타터
-- docs-driven AI 협업 방식의 참고 예시
-
-## 이 템플릿 사용 방법
-
-1. 이 저장소를 새 프로젝트에 복사합니다.
-2. `AGENTS.md`와 `docs/01`, `docs/02`, `docs/03`의 플레이스홀더를 실제 내용으로 교체합니다.
-3. `todo`와 `todos` 폴더 명칭 규칙을 하나로 맞춥니다.
-4. 아키텍처, 스펙, 제품 범위가 바뀌면 관련 문서를 즉시 갱신합니다.
-5. 중요한 작업은 `docs/reports/`에 기록합니다.
-6. 막힌 후속 작업은 `docs/todos/`에 기록합니다.
-
-## 참고
-
-- 현재 문서 템플릿은 한국어로 작성되어 있습니다.
-- 이 저장소는 애플리케이션 런타임이 아니라, 애플리케이션 개발을 위한 협업 구조입니다.
-
-## 라이선스
-
-이 저장소는 커스텀 템플릿 라이선스를 사용합니다.
-
-- 프로젝트에 가져다 쓰고 수정하는 것은 허용됩니다.
-- 상업용 서비스나 클라이언트 프로젝트에 사용하는 것도 허용됩니다.
-- 하지만 이 구조 자체를 템플릿, 스타터, 보일러플레이트 형태로 판매하거나 재배포하는 것은 금지됩니다.
-
-자세한 조건은 [LICENSE](LICENSE)를 참고하세요.
+See [LICENSE](LICENSE) for full terms.
