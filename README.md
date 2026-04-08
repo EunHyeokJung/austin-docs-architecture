@@ -158,7 +158,8 @@ cp ko/AGENTS.md . && cp -r ko/docs . && rm -rf en ko
 
 ## Intended Workflow
 
-<img width="1118" height="629" alt="austin-docs-architecture-workflow-chart" src="https://github.com/user-attachments/assets/88357f8c-0772-4eac-b5be-e600c197f988" />
+<img width="960" height="540" alt="agent workflow chart" src="https://github.com/user-attachments/assets/d9f95731-e6d6-4e9f-aed6-90a511294c80" />
+
 
 ## Operating Principles
 
