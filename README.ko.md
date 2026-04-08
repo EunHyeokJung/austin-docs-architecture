@@ -158,7 +158,7 @@ cp en/AGENTS.md . && cp -r en/docs . && rm -rf en ko
 
 ## 의도한 워크플로
 
-<img width="1118" height="629" alt="austin-docs-architecture-workflow-chart" src="https://github.com/user-attachments/assets/3099d38c-c223-4416-ad4f-314563225952" />
+<img width="960" height="540" alt="agent workflow chart" src="https://github.com/user-attachments/assets/d9f95731-e6d6-4e9f-aed6-90a511294c80" />
 
 ## 운영 원칙
 
